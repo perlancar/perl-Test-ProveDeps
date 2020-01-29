@@ -10,11 +10,21 @@ use warnings;
 
 use App::ProveDeps;
 use Data::Dmp;
+use Test::Builder;
 
 my $Test = Test::Builder->new;
 
+sub import {
+    my $self = shift;
+    my $caller = caller;
+    *{$caller.'::all_dependents_ok'} = \&all_dependents_ok;
+
+    $Test->exported_to($caller);
+    $Test->plan(@_);
+}
+
 sub all_dependents_ok {
-    my %opts   = (@_ && (ref $_[0] eq "HASH")) ? %{(shift)} : ();
+    my %opts = @_;
     my $res;
     my $ok = 1;
 
