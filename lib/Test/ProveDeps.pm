@@ -79,6 +79,13 @@ sub all_dependents_ok {
 
 =head1 DESCRIPTION
 
+EXPERIMENTAL.
+
+
+=head1 FUNCTIONS
+
+=head2 all_dependents_ok
+
 
 =head1 SEE ALSO
 
